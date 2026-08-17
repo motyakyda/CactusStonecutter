@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "dev.cactusskins.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "client": [
+    "AbstractClientPlayerEntityMixin",
+    "MinecraftClientMixin",
+    "OptionsScreenMixin",
+    "PlayerListEntryMixin",
+    "TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
