@@ -96,18 +96,18 @@ public final class SkinService {
 
     private static NativeImageBackedTexture nativeTexture(NativeImage image) {
         //? if >=1.21.0 {
-        return new NativeImageBackedTexture(() -> "cactusskins", image);
-        //?} else {
-        /*return new NativeImageBackedTexture(image);
-        *///?}
+        /*return new NativeImageBackedTexture(() -> "cactusskins", image);
+        *///?} else {
+        return new NativeImageBackedTexture(image);
+        //?}
     }
 
     private static Identifier id(String key) {
         //? if >=1.21.0 {
-        return Identifier.of("cactusskins", key);
-        //?} else {
-        /*return new Identifier("cactusskins", key);
-        *///?}
+        /*return Identifier.of("cactusskins", key);
+        *///?} else {
+        return new Identifier("cactusskins", key);
+        //?}
     }
 
     private static JsonObject parse(String json) {

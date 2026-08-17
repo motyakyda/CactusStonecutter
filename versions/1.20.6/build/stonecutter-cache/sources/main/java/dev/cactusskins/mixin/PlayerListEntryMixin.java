@@ -72,6 +72,6 @@ public abstract class PlayerListEntryMixin {
         PlayerSkinData data = CactusSkins.OVERRIDES.get(
                 CactusSkins.profileId(((PlayerListEntry) (Object) this).getProfile()));
         if (data != null && data.cape != null) cir.setReturnValue(data.cape);
-    }*/
-    //?}
+    }
+    *///?}
 }

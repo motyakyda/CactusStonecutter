@@ -9,10 +9,10 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 //? if >=1.21.9 {
-import net.minecraft.entity.player.PlayerSkinType;
+/*import net.minecraft.entity.player.PlayerSkinType;
 import net.minecraft.entity.player.SkinTextures;
 import net.minecraft.util.AssetInfo;
-//?} else if >=1.20.2 {
+*///?} else if >=1.20.2 {
 /*import net.minecraft.client.util.SkinTextures;
 *///?}
 
@@ -21,7 +21,7 @@ import net.minecraft.util.AssetInfo;
 public abstract class PlayerListEntryMixin {
 
     //? if >=1.21.9 {
-    @Inject(method = "getSkinTextures", at = @At("RETURN"), cancellable = true)
+    /*@Inject(method = "getSkinTextures", at = @At("RETURN"), cancellable = true)
     private void cactusskins$override(CallbackInfoReturnable<SkinTextures> cir) {
         PlayerSkinData data = CactusSkins.OVERRIDES.get(
                 CactusSkins.profileId(((PlayerListEntry) (Object) this).getProfile()));
@@ -36,14 +36,14 @@ public abstract class PlayerListEntryMixin {
                 base.secure()));
     }
 
-    /** TextureAsset поверх текстуры, зарегистрированной в TextureManager. */
+    /^* TextureAsset поверх текстуры, зарегистрированной в TextureManager. ^/
     record CactusAsset(Identifier id) implements AssetInfo.TextureAsset {
         @Override
         public Identifier texturePath() {
             return this.id;
         }
     }
-    //?} else if >=1.20.2 {
+    *///?} else if >=1.20.2 {
     /*@Inject(method = "getSkinTextures", at = @At("RETURN"), cancellable = true)
     private void cactusskins$override20(CallbackInfoReturnable<SkinTextures> cir) {
         PlayerSkinData data = CactusSkins.OVERRIDES.get(
@@ -60,7 +60,7 @@ public abstract class PlayerListEntryMixin {
                 base.secure()));
     }
     *///?} else {
-    /*@Inject(method = "getSkinTexture", at = @At("RETURN"), cancellable = true)
+    @Inject(method = "getSkinTexture", at = @At("RETURN"), cancellable = true)
     private void cactusskins$skin(CallbackInfoReturnable<Identifier> cir) {
         PlayerSkinData data = CactusSkins.OVERRIDES.get(
                 CactusSkins.profileId(((PlayerListEntry) (Object) this).getProfile()));
@@ -73,5 +73,5 @@ public abstract class PlayerListEntryMixin {
                 CactusSkins.profileId(((PlayerListEntry) (Object) this).getProfile()));
         if (data != null && data.cape != null) cir.setReturnValue(data.cape);
     }
-    *///?}
+    //?}
 }

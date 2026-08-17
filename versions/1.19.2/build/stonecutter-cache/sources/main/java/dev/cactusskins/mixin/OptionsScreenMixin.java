@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //? if <1.19.0 {
-/*import net.minecraft.text.LiteralText;*/
-//?}
+/*import net.minecraft.text.LiteralText;
+*///?}
 
 @Mixin(OptionsScreen.class)
 public abstract class OptionsScreenMixin extends Screen {
@@ -21,8 +21,8 @@ public abstract class OptionsScreenMixin extends Screen {
         //? if >=1.19.0 {
         super(Text.empty());
         //?} else {
-        /*super(new LiteralText(""));*/
-        //?}
+        /*super(new LiteralText(""));
+        *///?}
     }
 
     @Inject(method = "init", at = @At("TAIL"))
@@ -50,14 +50,14 @@ public abstract class OptionsScreenMixin extends Screen {
                     if (this.client != null) {
                         this.client.setScreen(new SkinsScreen((OptionsScreen) (Object) this));
                     }
-                }));*/
-        //?} else {
+                }));
+        *///?} else {
         /*this.addButton(new ButtonWidget(4, this.height - 24, 100, 20,
                 new LiteralText("CactusSkins"), b -> {
                     if (this.client != null) {
-                        this.client.setScreen(new SkinsScreen((OptionsScreen) (Object) this));
+                        this.client.openScreen(new SkinsScreen((OptionsScreen) (Object) this));
                     }
-                }));*/
-        //?}
+                }));
+        *///?}
     }
 }

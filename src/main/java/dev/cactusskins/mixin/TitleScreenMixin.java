@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //? if <1.19.0 {
-/*import net.minecraft.text.LiteralText;
-*///?}
+import net.minecraft.text.LiteralText;
+//?}
 
 @Mixin(TitleScreen.class)
 public abstract class TitleScreenMixin extends Screen {
@@ -23,7 +23,7 @@ public abstract class TitleScreenMixin extends Screen {
     @Inject(method = "init", at = @At("TAIL"))
     private void cactusskins$addSkinsButton(CallbackInfo ci) {
         //? if >=1.19.4 {
-        this.addDrawableChild(ButtonWidget.builder(
+        /*this.addDrawableChild(ButtonWidget.builder(
                         Text.literal("Skins"),
                         b -> {
                             if (this.client != null) {
@@ -32,7 +32,7 @@ public abstract class TitleScreenMixin extends Screen {
                         })
                 .dimensions(this.width / 2 - 50, this.height - 24, 100, 20)
                 .build());
-        //?} else if >=1.19.0 {
+        *///?} else if >=1.19.0 {
         /*this.addDrawableChild(new ButtonWidget(this.width / 2 - 50, this.height - 24, 100, 20,
                 Text.literal("Skins"), b -> {
                     if (this.client != null) {
@@ -47,12 +47,12 @@ public abstract class TitleScreenMixin extends Screen {
                     }
                 }));
         *///?} else {
-        /*this.addButton(new ButtonWidget(this.width / 2 - 50, this.height - 24, 100, 20,
+        this.addButton(new ButtonWidget(this.width / 2 - 50, this.height - 24, 100, 20,
                 new LiteralText("Skins"), b -> {
                     if (this.client != null) {
                         this.client.openScreen(new SkinsScreen((TitleScreen) (Object) this));
                     }
                 }));
-        *///?}
+        //?}
     }
 }

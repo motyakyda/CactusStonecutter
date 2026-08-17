@@ -10,8 +10,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //? if <1.19.0 {
-/*import net.minecraft.text.LiteralText;*/
-//?}
+/*import net.minecraft.text.LiteralText;
+*///?}
 
 @Mixin(TitleScreen.class)
 public abstract class TitleScreenMixin extends Screen {
@@ -45,14 +45,14 @@ public abstract class TitleScreenMixin extends Screen {
                     if (this.client != null) {
                         this.client.setScreen(new SkinsScreen((TitleScreen) (Object) this));
                     }
-                }));*/
-        //?} else {
+                }));
+        *///?} else {
         /*this.addButton(new ButtonWidget(this.width / 2 - 50, this.height - 24, 100, 20,
                 new LiteralText("Skins"), b -> {
                     if (this.client != null) {
-                        this.client.setScreen(new SkinsScreen((TitleScreen) (Object) this));
+                        this.client.openScreen(new SkinsScreen((TitleScreen) (Object) this));
                     }
-                }));*/
-        //?}
+                }));
+        *///?}
     }
 }
