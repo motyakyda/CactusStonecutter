@@ -11,24 +11,24 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 //? if <1.19.0 {
-import net.minecraft.text.LiteralText;
-//?}
+/*import net.minecraft.text.LiteralText;
+*///?}
 
 @Mixin(OptionsScreen.class)
 public abstract class OptionsScreenMixin extends Screen {
 
     protected OptionsScreenMixin(Screen parent, GameOptions options) {
         //? if >=1.19.0 {
-        /*super(Text.empty());
-        *///?} else {
-        super(new LiteralText(""));
-        //?}
+        super(Text.empty());
+        //?} else {
+        /*super(new LiteralText(""));
+        *///?}
     }
 
     @Inject(method = "init", at = @At("TAIL"))
     private void cactusskins$addSettingsButton(CallbackInfo ci) {
         //? if >=1.19.4 {
-        /*this.addDrawableChild(ButtonWidget.builder(
+        this.addDrawableChild(ButtonWidget.builder(
                         Text.literal("CactusSkins"),
                         b -> {
                             if (this.client != null) {
@@ -37,7 +37,7 @@ public abstract class OptionsScreenMixin extends Screen {
                         })
                 .dimensions(4, this.height - 24, 100, 20)
                 .build());
-        *///?} else if >=1.19.0 {
+        //?} else if >=1.19.0 {
         /*this.addDrawableChild(new ButtonWidget(4, this.height - 24, 100, 20,
                 Text.literal("CactusSkins"), b -> {
                     if (this.client != null) {
@@ -52,12 +52,12 @@ public abstract class OptionsScreenMixin extends Screen {
                     }
                 }));
         *///?} else {
-        this.addButton(new ButtonWidget(4, this.height - 24, 100, 20,
+        /*this.addButton(new ButtonWidget(4, this.height - 24, 100, 20,
                 new LiteralText("CactusSkins"), b -> {
                     if (this.client != null) {
                         this.client.openScreen(new SkinsScreen((OptionsScreen) (Object) this));
                     }
                 }));
-        //?}
+        *///?}
     }
 }

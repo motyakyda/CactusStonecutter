@@ -1,0 +1,46 @@
+name: Release
+
+on:
+  push:
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: |
+            8
+            17
+            21
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build all versions
+        run: |
+          for v in 1.16.5 1.17.1 1.18.2 1.19.2 1.19.4 1.20.2 1.20.4 1.20.6 1.21.11; do
+            gradle "Set active project to $v" --no-daemon
+            gradle ":$v:build" --no-daemon
+          done
+
+      - name: Collect jars
+        run: |
+          mkdir -p dist
+          find versions/*/build/libs -name '*.jar' ! -name '*-sources.jar' -exec cp {} dist/ \;
+          ls -la dist
+
+      - name: Publish release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.jar
+          generate_release_notes: true

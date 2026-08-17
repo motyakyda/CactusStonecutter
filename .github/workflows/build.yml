@@ -1,0 +1,46 @@
+name: Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        mc: [ '1.16.5', '1.17.1', '1.18.2', '1.19.2', '1.19.4', '1.20.2', '1.20.4', '1.20.6', '1.21.11' ]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: |
+            8
+            17
+            21
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build ${{ matrix.mc }}
+        run: |
+          gradle "Set active project to ${{ matrix.mc }}" --no-daemon
+          gradle ":${{ matrix.mc }}:build" --no-daemon
+
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: cactusskins-${{ matrix.mc }}
+          path: versions/${{ matrix.mc }}/build/libs/*.jar
+          if-no-files-found: error

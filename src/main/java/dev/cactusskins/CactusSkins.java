@@ -22,18 +22,18 @@ public final class CactusSkins {
 
     public static UUID profileId(GameProfile profile) {
         //? if >=1.21.0 {
-        /*return profile.id();
-        *///?} else {
-        return profile.getId();
-        //?}
+        return profile.id();
+        //?} else {
+        /*return profile.getId();
+        *///?}
     }
 
     public static String profileName(GameProfile profile) {
         //? if >=1.21.0 {
-        /*return profile.name();
-        *///?} else {
-        return profile.getName();
-        //?}
+        return profile.name();
+        //?} else {
+        /*return profile.getName();
+        *///?}
     }
 
     public static void onClientTick(MinecraftClient client) {

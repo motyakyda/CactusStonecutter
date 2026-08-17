@@ -1,0 +1,23 @@
+# Gradle
+.gradle/
+build/
+versions/*/build/
+versions/*/.gradle/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.ipr
+*.iws
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Loom
+run/
+remappedSrc/
+
+# Случайно созданный вложенный репозиторий
+/CactusStonecutter/

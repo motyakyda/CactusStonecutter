@@ -1,7 +1,7 @@
 package dev.cactusskins.mixin;
 
 //? if <1.19.4 {
-import dev.cactusskins.CactusSkins;
+/*import dev.cactusskins.CactusSkins;
 import dev.cactusskins.PlayerSkinData;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,4 +19,4 @@ public abstract class AbstractClientPlayerEntityMixin {
         if (data != null) cir.setReturnValue(data.slim ? "slim" : "classic");
     }
 }
-//?}
+*///?}
