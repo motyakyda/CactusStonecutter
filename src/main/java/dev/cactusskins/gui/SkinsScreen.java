@@ -21,6 +21,8 @@ import net.minecraft.client.gui.DrawContext;
 *///?}
 
 import javax.imageio.ImageIO;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URI;
@@ -186,6 +188,23 @@ public class SkinsScreen extends Screen {
                     SkinService.clearDiskCache();
                     CactusSkins.resetSession();
                     this.setStatus("Backend сохранён", C_OK);
+                }));
+
+        // Копировать токен в буфер обмена
+        this.add(GuiCompat.button(this.width / 2 - 152, y + 22, 100, 20,
+                GuiCompat.text("📋 Копировать токен"), b -> {
+                    String token = CactusConfig.get().authToken;
+                    if (token == null || token.isEmpty()) {
+                        this.setStatus("Токен пуст — сначала привяжи аккаунт", C_ERR);
+                        return;
+                    }
+                    try {
+                        Toolkit.getDefaultToolkit().getSystemClipboard()
+                                .setContents(new StringSelection(token), null);
+                        this.setStatus("Токен скопирован", C_OK);
+                    } catch (Exception e) {
+                        this.setStatus("Не удалось скопировать: " + e.getMessage(), C_ERR);
+                    }
                 }));
     }
 
